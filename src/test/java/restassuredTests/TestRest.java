@@ -1,6 +1,6 @@
+package restassuredTests;
 
 import io.restassured.path.json.JsonPath;
-import io.restassured.response.Response;
 import lombok.SneakyThrows;
 import org.apache.commons.lang.RandomStringUtils;
 import org.json.JSONObject;
@@ -20,10 +20,10 @@ public class TestRest {
     String name;
     String surname;
 
+
     @SneakyThrows
     @Test
     public void getGuestToken() {
-
         JSONObject requestBody = new JSONObject();
         requestBody.put("grant_type", "client_credentials");
         requestBody.put("scope", "guest:default");
@@ -40,7 +40,6 @@ public class TestRest {
                 .statusCode(200)
                 .extract()
                 .jsonPath();
-
         this.accessToken = response.getString("access_token");
 
         Assertions.assertNotEquals(null, accessToken);
